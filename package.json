@@ -1,0 +1,35 @@
+{
+  "name": "sprint.promises",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/hackreactor-labs/sprint.promises.git"
+  },
+  "keywords": [
+    "promises"
+  ],
+  "author": "joshwyatt and danthareja",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackreactor-labs/sprint.promises/issues"
+  },
+  "homepage": "https://github.com/hackreactor-labs/sprint.promises",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "mocha": "^2.2.5",
+    "nock": "^2.15.0"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.34",
+    "colors": "^1.1.2",
+    "request": "^2.61.0"
+  }
+}
