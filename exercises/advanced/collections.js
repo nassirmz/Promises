@@ -4,6 +4,7 @@
 
 var Promise = require('bluebird');
 var asyncLib = require('../../lib/asyncLib.js');
+var fs = require('fs');
 
 /**
  * A common asyncronous pattern:
@@ -22,17 +23,17 @@ var asyncLib = require('../../lib/asyncLib.js');
  * then continue to the exercises when you're ready
  */
 
-// Promise.all([
-//   asyncLib.getValueA(),
-//   asyncLib.getValueB(),
-//   asyncLib.getValueC(),
-//   asyncLib.getValueD()
-// ])
-// .then(asyncLib.logResolvedValues)
-// .then(asyncLib.filterValuesFromCollection)
-// .then(asyncLib.doMoreAsyncWorkWithFilteredValues)
-// // `bind` sets correct context when using console.log as a callback
-// .catch(console.log.bind(console));
+Promise.all([
+  asyncLib.getValueA(),
+  asyncLib.getValueB(),
+  asyncLib.getValueC(),
+  asyncLib.getValueD()
+])
+.then(asyncLib.logResolvedValues)
+.then(asyncLib.filterValuesFromCollection)
+.then(asyncLib.doMoreAsyncWorkWithFilteredValues)
+// `bind` sets correct context when using console.log as a callback
+.catch(console.log.bind(console));
 
 
 /******************************************************************
@@ -57,9 +58,24 @@ var asyncLib = require('../../lib/asyncLib.js');
   *     // the new file has been successfully written
   *   })
   */
+Promise.promisifyAll(fs);
 
 var combineFirstLineOfManyFiles = function (filePaths, writePath) {
  // YOUR CODE HERE
+ var readAllFiles = filePaths.map(function (item) {
+  return fs.readFileAsync(item, 'utf8')
+    .then(function (data) {
+      return data.split('\n')[0];
+    });
+ });
+ return Promise.all(readAllFiles)
+  .then(function (contents) {
+    console.log('contents', contents);
+    return fs.writeFileAsync(writePath, contents.join('\n'),'utf8');
+  })
+  .catch(function (err) {
+    console.log(err);
+  })
 };
 
 // Export these functions so we can unit test them

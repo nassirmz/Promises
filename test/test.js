@@ -366,7 +366,7 @@ Remove this `x` when you're ready to move on to Advanced Content
 v
 
 */
-xdescribe('Advanced Content', function() {
+describe('Advanced Content', function() {
   // NOTE: These tests don't use mocks of any kind
   // If test speed or API rate limits become an issue,
   // refactor the tests to use mocks, following the
