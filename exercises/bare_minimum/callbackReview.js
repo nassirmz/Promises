@@ -18,7 +18,7 @@ var request = require('request');
 
 // fs.readFile(__dirname + '/../../README.md', 'utf8', function (err, content) {
 //   console.log('Example from callbackReview.js')
-//   if (err) { 
+//   if (err) {
 //     console.log('fs.readFile failed :(\n', err)
 //   } else {
 //     console.log('fs.readFile successfully completed :)\n', content)
@@ -36,17 +36,28 @@ var request = require('request');
 // This function should retrieve the first line of the file at `filePath`
 // HINT: Passing 'utf8' as the second argument to fs.readFile will give you a stringified file
 // HINT: You can get an array of lines by splitting on the '\n' character
-var pluckFirstLineFromFile = function (filePath
-) {
-  // YOUR CODE HERE
+var pluckFirstLineFromFile = function (filePath, cb) {
+  fs.readFile(filePath, 'utf8', function (err, contents) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(err, contents.split('\n')[0]);
+    }
+  });
 };
 
 // This function should retrieve the status code of a GET request to `url`
 // HINT: the `request` module has been included to help you send HTTP requests
 // HINT: there is a `statusCode` property on the `response` object
-var getStatusCode = function (url
-) {
+var getStatusCode = function (url, cb) {
   // YOUR CODE HERE
+  request(url, function (err, response, body) {
+    if (err) {
+      cb(err);
+    } else {
+      cb(err, response.statusCode);
+    }
+  })
 };
 
 // Export these functions so we can unit test them
