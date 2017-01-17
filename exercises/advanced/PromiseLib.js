@@ -79,8 +79,14 @@ var all = function (arrayOfPromises) {
  * the first to be resolved/rejected promise in the passed-in array
  */
 
-var race = function (arrayOfPromises) {
-  // TODO
+var race = function (promises) {
+  var first, error;
+  return new Promise(function executor(resolve, reject) {
+    for (var i = 0; i < promises.length; i += 1) {
+      promises[i].then(resolve)
+      .catch(reject);
+    }
+  });
 };
 
 // Export these functions so we can unit test them
