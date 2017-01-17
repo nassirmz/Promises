@@ -424,7 +424,7 @@ describe('Advanced Content', function() {
 
   });
 
-  describe('Advanced chaining', function() {
+  xdescribe('Advanced chaining', function() {
     var chaining = require('../exercises/advanced/chaining.js');
 
     describe('searchCommonTagsFromGitHubProfiles', function () {

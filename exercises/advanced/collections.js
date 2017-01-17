@@ -70,7 +70,6 @@ var combineFirstLineOfManyFiles = function (filePaths, writePath) {
  });
  return Promise.all(readAllFiles)
   .then(function (contents) {
-    console.log('contents', contents);
     return fs.writeFileAsync(writePath, contents.join('\n'),'utf8');
   })
   .catch(function (err) {
